@@ -21,7 +21,7 @@ interface HomeProps {
 export default function Home({ products }: HomeProps) {
   const [sliderRef] = useKeenSlider({
     slides: {
-      perView: 2.5,
+      perView: 1.8,
       spacing: 48,
     },
   });
@@ -34,7 +34,7 @@ export default function Home({ products }: HomeProps) {
             <Image src={product.imageUrl} width={520} height={480} alt="" />
             <footer>
               <strong>{product.name}</strong>
-              <span>R$ {product.price}</span>
+              <span>{product.price}</span>
             </footer>
           </Product>
         );
@@ -55,7 +55,10 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: price.unit_amount / 100,
+      price: new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      }).format(price.unit_amount / 100),
     };
   });
 
@@ -63,7 +66,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       products,
     },
-
-    revailidate: 60 * 60 * 2,
+    revalidate: 60 * 60 * 2,
   };
 };
