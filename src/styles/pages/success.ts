@@ -6,7 +6,10 @@ export const SuccessContainer = styled("main", {
   alignItems: "center",
   justifyContent: "center",
   margin: "0 auto",
+  width: "100%",
   height: 656,
+  maxWidth: 1180,
+  padding: "0 1rem 1rem 1rem",
 
   h1: {
     fontSize: "xxl",
