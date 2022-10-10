@@ -27,5 +27,6 @@ export const Header = styled("header", {
     borderRadius: 6,
     backgroundColor: "#202024",
     border: "none",
+    cursor: "pointer",
   },
 });
