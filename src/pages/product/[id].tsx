@@ -65,7 +65,7 @@ export default function Product({ product }: ProductProps) {
             onClick={handleBuyProduct}
             disabled={isCratingCheckoutSession}
           >
-            Compre agora
+            Colocar na sacola
           </button>
         </ProductDetails>
       </ProductContainer>

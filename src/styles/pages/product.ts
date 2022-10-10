@@ -56,7 +56,7 @@ export const ProductDetails = styled("div", {
 
   h1: {
     fontSize: "$xxl",
-    color: "$gray300",
+    color: "$gray200",
   },
 
   span: {
@@ -70,7 +70,7 @@ export const ProductDetails = styled("div", {
     marginTop: "2.5rem",
     fontSize: "$md",
     lineHeight: 1.6,
-    color: "$gray300",
+    color: "$gray200",
   },
 
   button: {
