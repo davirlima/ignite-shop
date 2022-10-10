@@ -11,6 +11,8 @@ import Stripe from "stripe";
 import Link from "next/link";
 import Head from "next/head";
 
+import gradient from "../assets/gradient.svg";
+
 interface HomeProps {
   products: {
     id: string;
@@ -43,6 +45,14 @@ export default function Home({ products }: HomeProps) {
       </Head>
 
       <HomeContainer ref={sliderRef} className="keen-slider">
+        <Image
+          src={gradient}
+          alt=""
+          width={136}
+          height={900}
+          className="gradient"
+        />
+
         {products.map((product) => {
           return (
             <Link

@@ -16,6 +16,7 @@ export const Header = styled("header", {
   width: "100%",
   maxWidth: 1180,
   margin: "0 auto",
+  zIndex: "2",
 
   button: {
     display: "flex",

@@ -7,6 +7,13 @@ export const HomeContainer = styled("main", {
   marginLeft: "auto",
   minHeight: 656,
   padding: "0 1rem",
+
+  ".gradient": {
+    position: "fixed",
+    top: 0,
+    right: 0,
+    zIndex: 1,
+  },
 });
 
 export const Product = styled("a", {
