@@ -1,12 +1,24 @@
 import { styled } from "..";
 
 export const ProductContainer = styled("main", {
+  width: "100%",
   display: "grid",
   gridTemplateColumns: "1fr 1fr",
   alignItems: "stretch",
   gap: "4rem",
   maxWidth: 1180,
   margin: "0 auto",
+  padding: "0 1rem 1rem 1rem",
+
+  "@media screen and (max-width: 800px)": {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+
+    gap: "2.5rem",
+  },
 });
 
 export const ImageContainer = styled("div", {
@@ -23,6 +35,18 @@ export const ImageContainer = styled("div", {
 
   img: {
     objectFit: "cover",
+    width: "90.2%",
+    height: "73.17%",
+  },
+
+  "@media screen and (max-width: 800px)": {
+    width: "50%",
+    height: 454.42,
+  },
+
+  "@media screen and (max-width: 450px)": {
+    width: "80%",
+    height: 362.61,
   },
 });
 
@@ -37,7 +61,7 @@ export const ProductDetails = styled("div", {
 
   span: {
     marginTop: "1rem",
-    display: "flex",
+    display: "block",
     fontSize: "$xxl",
     color: "$green300",
   },
@@ -68,6 +92,12 @@ export const ProductDetails = styled("div", {
     "&:not(:disabled):hover": {
       transition: "background 0.2s",
       background: "$green300",
+    },
+  },
+
+  "@media screen and (max-width: 800px)": {
+    button: {
+      marginTop: "2.5rem",
     },
   },
 });
