@@ -13,6 +13,7 @@ import Head from "next/head";
 
 import gradient from "../assets/gradient.svg";
 import { Handbag } from "phosphor-react";
+import { useCart } from "../hooks/useCart";
 
 interface HomeProps {
   products: {
@@ -38,6 +39,8 @@ export default function Home({ products }: HomeProps) {
       },
     },
   });
+
+  const { addProductOnCart } = useCart();
 
   return (
     <>
@@ -68,7 +71,12 @@ export default function Home({ products }: HomeProps) {
                     <strong>{product.name}</strong>
                     <span>{product.price}</span>
                   </div>
-                  <button>
+                  <button
+                    onClick={(event) => {
+                      event.preventDefault();
+                      addProductOnCart(product);
+                    }}
+                  >
                     <Handbag size={32} weight="bold" />
                   </button>
                 </footer>
