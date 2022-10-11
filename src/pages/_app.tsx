@@ -5,8 +5,8 @@ import { Container, Header } from "../styles/pages/app";
 import Image from "next/future/image";
 import { Handbag } from "phosphor-react";
 import * as Dialog from "@radix-ui/react-dialog";
-import { CartProvider } from "use-shopping-cart";
 import { Sidebar } from "../components/sidebar";
+import { CartContextProvider } from "../contexts/CartContext";
 
 globalStyles();
 
@@ -27,13 +27,9 @@ export default function App({ Component, pageProps }: AppProps) {
         </Dialog.Root>
       </Header>
 
-      <CartProvider
-        cartMode="checkout-session"
-        stripe={process.env.STRIPE_SECRET_KEY}
-        currency="BRL"
-      >
+      <CartContextProvider>
         <Component {...pageProps} />
-      </CartProvider>
+      </CartContextProvider>
     </Container>
   );
 }
