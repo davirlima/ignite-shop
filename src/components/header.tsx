@@ -1,4 +1,5 @@
 import Image from "next/future/image";
+import Link from "next/link";
 
 import { useCart } from "../hooks/useCart";
 
@@ -17,7 +18,11 @@ export default function Header() {
 
   return (
     <HeaderContainer>
-      <Image src={logoImg} alt="" />
+      <Link href="/">
+        <a>
+          <Image src={logoImg} alt="" />
+        </a>
+      </Link>
 
       <Dialog.Root>
         <Dialog.Trigger asChild>
