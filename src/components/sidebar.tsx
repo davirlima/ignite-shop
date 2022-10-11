@@ -43,34 +43,33 @@ export const Sidebar = () => {
         </CloseButton>
 
         <div>
-          <h1>Sacola de compras</h1>
+          <h1 className="title">Sacola de compras</h1>
 
           <CardContainer>
-            {productsOnCart != undefined &&
-              productsOnCart.map((product) => {
-                return (
-                  <Card key={product.id}>
-                    <div className="img-container">
-                      <Image
-                        src={product.imageUrl}
-                        width={94.79}
-                        height={94.79}
-                        alt=""
-                      />
-                    </div>
+            {productsOnCart.map((product) => {
+              return (
+                <Card key={product.id}>
+                  <div className="img-container">
+                    <Image
+                      src={product.imageUrl}
+                      width={94.79}
+                      height={94.79}
+                      alt=""
+                    />
+                  </div>
 
-                    <div className="text-container">
-                      <div>
-                        <h1>{product.name}</h1>
-                        <strong>{product.price}</strong>
-                      </div>
-                      <button onClick={() => removeProductFromCart(product)}>
-                        Remover
-                      </button>
+                  <div className="text-container">
+                    <div>
+                      <h1>{product.name}</h1>
+                      <strong>{product.price}</strong>
                     </div>
-                  </Card>
-                );
-              })}
+                    <button onClick={() => removeProductFromCart(product)}>
+                      Remover
+                    </button>
+                  </div>
+                </Card>
+              );
+            })}
           </CardContainer>
         </div>
 

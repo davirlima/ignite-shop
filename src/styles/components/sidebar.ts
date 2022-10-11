@@ -27,6 +27,10 @@ export const SidebarContainer = styled(Dialog.Content, {
   display: "flex",
   flexDirection: "column",
   justifyContent: "space-between",
+
+  ".title": {
+    fontSize: "$md",
+  },
 });
 
 export const CloseButton = styled(Dialog.Close, {
