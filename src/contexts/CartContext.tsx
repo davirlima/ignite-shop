@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 
 import { produce } from "immer";
 
@@ -27,6 +33,19 @@ export const CartContext = createContext({} as CartContextProps);
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [productsOnCart, setProductOnCart] = useState<Product[]>([]);
 
+  useEffect(() => {
+    const productsOnStorage = localStorage.getItem("product");
+    if (productsOnStorage) {
+      setProductOnCart(JSON.parse(productsOnStorage));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (productsOnCart.length > 0) {
+      localStorage.setItem("product", JSON.stringify(productsOnCart));
+    }
+  }, [productsOnCart]);
+
   const totalItemsOnCart = productsOnCart.length;
 
   function verifyIfProductAlreadyStayOnCart(productId: string) {
@@ -36,21 +55,28 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     return verificator != -1 ? true : false;
   }
 
-  function addProductOnCart(product: Product) {
-    if (!verifyIfProductAlreadyStayOnCart(product.id)) {
-      setProductOnCart((state) => [...state, product]);
-    }
-  }
+  const addProductOnCart = useCallback(
+    (product: Product) => {
+      if (!verifyIfProductAlreadyStayOnCart(product.id)) {
+        setProductOnCart((state) => [...state, product]);
+      }
+    },
+    [verifyIfProductAlreadyStayOnCart]
+  );
 
-  function removeProductFromCart(product: Product) {
-    const position = productsOnCart.findIndex(
-      (oldProduct) => oldProduct.id === product.id
-    );
-    const newCart = produce(productsOnCart, (draft) => {
-      draft.splice(position, 1);
-    });
-    setProductOnCart(newCart);
-  }
+  const removeProductFromCart = useCallback(
+    (product: Product) => {
+      const position = productsOnCart.findIndex(
+        (oldProduct) => oldProduct.id === product.id
+      );
+      const newCart = produce(productsOnCart, (draft) => {
+        draft.splice(position, 1);
+      });
+      setProductOnCart(newCart);
+      localStorage.setItem("product", JSON.stringify([]));
+    },
+    [productsOnCart]
+  );
 
   return (
     <CartContext.Provider
