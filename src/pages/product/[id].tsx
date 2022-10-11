@@ -1,16 +1,17 @@
+import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
 import Image from "next/future/image";
+
+import Stripe from "stripe";
+import { stripe } from "../../lib/stripe";
+
+import { useCart } from "../../hooks/useCart";
+
 import {
   ImageContainer,
   ProductContainer,
   ProductDetails,
 } from "../../styles/pages/product";
-import { GetStaticPaths, GetStaticProps } from "next";
-import { stripe } from "../../lib/stripe";
-import Stripe from "stripe";
-import axios from "axios";
-import { useState } from "react";
-import Head from "next/head";
-import { useCart } from "../../hooks/useCart";
 
 interface ProductProps {
   product: {
@@ -24,27 +25,6 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
-  // const [isCratingCheckoutSession, setIsCratingCheckoutSession] =
-  //   useState(false);
-
-  // async function handleBuyProduct() {
-  //   try {
-  //     setIsCratingCheckoutSession(true);
-
-  //     const response = await axios.post("/api/checkout", {
-  //       priceId: product.defaultPriceId,
-  //     });
-
-  //     const { checkoutUrl } = response.data;
-
-  //     window.location.href = checkoutUrl;
-  //   } catch (error) {
-  //     setIsCratingCheckoutSession(false);
-
-  //     alert("Falha ao redirecionar ao checkout");
-  //   }
-  // }
-
   const { addProductOnCart } = useCart();
 
   return (

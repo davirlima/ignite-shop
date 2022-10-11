@@ -1,4 +1,5 @@
 import { Html, Main, NextScript, Head } from "next/document";
+
 import { getCssText } from "../styles";
 
 export default function Document() {

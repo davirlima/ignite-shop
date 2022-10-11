@@ -1,10 +1,16 @@
 import Image from "next/future/image";
-import * as Dialog from "@radix-ui/react-dialog";
-import logoImg from "../assets/logo.svg";
-import { Sidebar } from "./sidebar";
-import { Handbag } from "phosphor-react";
-import { HeaderContainer } from "../styles/components/header";
+
 import { useCart } from "../hooks/useCart";
+
+import Sidebar from "./sidebar";
+
+import * as Dialog from "@radix-ui/react-dialog";
+
+import { HeaderContainer } from "../styles/components/header";
+
+import { Handbag } from "phosphor-react";
+
+import logoImg from "../assets/logo.svg";
 
 export default function Header() {
   const { totalItemsOnCart } = useCart();

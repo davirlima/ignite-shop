@@ -1,7 +1,13 @@
-import * as Dialog from "@radix-ui/react-dialog";
+import { useState } from "react";
+
 import Image from "next/future/image";
-import { X } from "phosphor-react";
+
 import { useCart } from "../hooks/useCart";
+
+import axios from "axios";
+
+import * as Dialog from "@radix-ui/react-dialog";
+
 import {
   SidebarContainer,
   CloseButton,
@@ -11,7 +17,9 @@ import {
   BuyButton,
 } from "../styles/components/sidebar";
 
-export const Sidebar = () => {
+import { X } from "phosphor-react";
+
+export default function Sidebar() {
   const { productsOnCart, removeProductFromCart, totalItemsOnCart } = useCart();
 
   function calculateTotalPrice() {
@@ -33,6 +41,27 @@ export const Sidebar = () => {
       style: "currency",
       currency: "BRL",
     }).format(sum);
+  }
+
+  const [isCratingCheckoutSession, setIsCratingCheckoutSession] =
+    useState(false);
+
+  async function handleBuyCart() {
+    try {
+      setIsCratingCheckoutSession(true);
+
+      const response = await axios.post("/api/checkout", {
+        pricesId: productsOnCart.map((product) => product.defaultPriceId),
+      });
+
+      const { checkoutUrl } = response.data;
+
+      window.location.href = checkoutUrl;
+    } catch (error) {
+      setIsCratingCheckoutSession(false);
+
+      alert("Falha ao redirecionar ao checkout");
+    }
   }
 
   return (
@@ -88,9 +117,14 @@ export const Sidebar = () => {
             </div>
           </OrderDetailsContainer>
 
-          <BuyButton>Finalizar Compra</BuyButton>
+          <BuyButton
+            onClick={handleBuyCart}
+            disabled={isCratingCheckoutSession}
+          >
+            Finalizar Compra
+          </BuyButton>
         </div>
       </SidebarContainer>
     </Dialog.Portal>
   );
-};
+}
