@@ -1,17 +1,19 @@
+import { GetStaticProps } from "next";
+import Link from "next/link";
+import Head from "next/head";
 import Image from "next/future/image";
+
+import Stripe from "stripe";
+import { stripe } from "../lib/stripe";
 
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
 
+import { useCart } from "../hooks/useCart";
+
 import { HomeContainer, Product } from "../styles/pages/home";
 
-import { stripe } from "../lib/stripe";
-import { GetStaticProps } from "next";
-import Stripe from "stripe";
-import Link from "next/link";
-import Head from "next/head";
 import { Handbag } from "phosphor-react";
-import { useCart } from "../hooks/useCart";
 
 interface HomeProps {
   products: {
@@ -19,6 +21,7 @@ interface HomeProps {
     name: string;
     imageUrl: string;
     price: string;
+    defaultPriceId: string;
   }[];
 }
 
@@ -95,6 +98,7 @@ export const getStaticProps: GetStaticProps = async () => {
         style: "currency",
         currency: "BRL",
       }).format(price.unit_amount / 100),
+      defaultPriceId: price.id,
     };
   });
 

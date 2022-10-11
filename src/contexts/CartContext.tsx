@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useState } from "react";
+
 import { produce } from "immer";
 
 interface Product {
@@ -6,8 +7,8 @@ interface Product {
   name: string;
   imageUrl: string;
   price: string;
+  defaultPriceId: string;
   description?: string;
-  defaultPriceId?: string;
 }
 
 interface CartContextProps {
