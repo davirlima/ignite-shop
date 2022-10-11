@@ -31,6 +31,11 @@ export const SidebarContainer = styled(Dialog.Content, {
   ".title": {
     fontSize: "$md",
   },
+
+  "@media screen and (max-width: 425px)": {
+    width: "50%",
+    padding: "4.5rem 1.5rem 3rem 1.5rem",
+  },
 });
 
 export const CloseButton = styled(Dialog.Close, {
@@ -63,6 +68,7 @@ export const Card = styled("div", {
   width: "100%",
 
   display: "flex",
+  alignItems: "center",
   gap: "1.25rem",
 
   ".img-container": {
@@ -87,10 +93,12 @@ export const Card = styled("div", {
     justifyContent: "space-between",
     alignItems: "flex-start",
 
-    h1: {
-      fontWeight: "400",
-      fontSize: "$md",
-      lineHeight: 1.6,
+    div: {
+      h1: {
+        fontWeight: "400",
+        fontSize: "$md",
+        lineHeight: 1.6,
+      },
     },
 
     button: {
@@ -99,6 +107,7 @@ export const Card = styled("div", {
       border: "none",
       background: "none",
       cursor: "pointer",
+      paddingTop: 10,
 
       "&:hover": {
         transition: "color 0.2s",
