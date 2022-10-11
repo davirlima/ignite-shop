@@ -60,7 +60,9 @@ Aplicação Web front-end de um E-Commerce de camisetas (fictício), com pagamen
   yarn install
   ~~~
   
-3. Execute a aplicação com o comando:
+3. Renomeie o arquivo _.template.local_ da raiz, para **_.env.local_** e edite as chaves do stripe 
+  
+4. Execute a aplicação com o comando:
 
   ~~~bash
   npm run dev
@@ -68,7 +70,7 @@ Aplicação Web front-end de um E-Commerce de camisetas (fictício), com pagamen
   yarn dev
   ~~~
   
- 4. Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
+ 5. Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
 
 ## :computer: Interfaces:
 
