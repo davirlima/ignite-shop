@@ -13,6 +13,7 @@
     "@radix-ui/react-popover": "1.0.0",
     "@stitches/react": "^1.2.8",
     "axios": "^1.0.0",
+    "immer": "^9.0.15",
     "keen-slider": "^6.8.2",
     "next": "12.3.1",
     "phosphor-react": "^1.4.1",
