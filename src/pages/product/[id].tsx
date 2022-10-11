@@ -10,6 +10,7 @@ import Stripe from "stripe";
 import axios from "axios";
 import { useState } from "react";
 import Head from "next/head";
+import { useCart } from "../../hooks/useCart";
 
 interface ProductProps {
   product: {
@@ -23,26 +24,28 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
-  const [isCratingCheckoutSession, setIsCratingCheckoutSession] =
-    useState(false);
+  // const [isCratingCheckoutSession, setIsCratingCheckoutSession] =
+  //   useState(false);
 
-  async function handleBuyProduct() {
-    try {
-      setIsCratingCheckoutSession(true);
+  // async function handleBuyProduct() {
+  //   try {
+  //     setIsCratingCheckoutSession(true);
 
-      const response = await axios.post("/api/checkout", {
-        priceId: product.defaultPriceId,
-      });
+  //     const response = await axios.post("/api/checkout", {
+  //       priceId: product.defaultPriceId,
+  //     });
 
-      const { checkoutUrl } = response.data;
+  //     const { checkoutUrl } = response.data;
 
-      window.location.href = checkoutUrl;
-    } catch (error) {
-      setIsCratingCheckoutSession(false);
+  //     window.location.href = checkoutUrl;
+  //   } catch (error) {
+  //     setIsCratingCheckoutSession(false);
 
-      alert("Falha ao redirecionar ao checkout");
-    }
-  }
+  //     alert("Falha ao redirecionar ao checkout");
+  //   }
+  // }
+
+  const { addProductOnCart } = useCart();
 
   return (
     <>
@@ -62,8 +65,8 @@ export default function Product({ product }: ProductProps) {
           <p>{product.description}</p>
 
           <button
-            onClick={handleBuyProduct}
-            disabled={isCratingCheckoutSession}
+            onClick={() => addProductOnCart(product)}
+            // disabled={isCratingCheckoutSession}
           >
             Colocar na sacola
           </button>
