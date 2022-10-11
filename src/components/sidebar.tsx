@@ -12,7 +12,28 @@ import {
 } from "../styles/components/sidebar";
 
 export const Sidebar = () => {
-  const { productsOnCart, removeProductFromCart } = useCart();
+  const { productsOnCart, removeProductFromCart, totalItemsOnCart } = useCart();
+
+  function calculateTotalPrice() {
+    const pricesInNumberFormat = productsOnCart.map((product) => {
+      const priceInArray = product.price.split("");
+      const priceInString = priceInArray
+        .splice(3, priceInArray.length)
+        .join("")
+        .replace(",", ".");
+      return parseFloat(priceInString);
+    });
+
+    const sum = pricesInNumberFormat.reduce((acc, price) => {
+      acc += price;
+      return acc;
+    }, 0);
+
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(sum);
+  }
 
   return (
     <Dialog.Portal>
@@ -57,12 +78,14 @@ export const Sidebar = () => {
           <OrderDetailsContainer>
             <div>
               <span>Quantidade</span>
-              <span>1 item</span>
+              <span>
+                {totalItemsOnCart == 1 ? `1 item` : `${totalItemsOnCart} itens`}
+              </span>
             </div>
 
             <div>
               <strong>Valor total</strong>
-              <strong>R$ 79,90</strong>
+              <strong>{calculateTotalPrice()}</strong>
             </div>
           </OrderDetailsContainer>
 
