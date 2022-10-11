@@ -60,7 +60,7 @@ Aplicação Web front-end de um E-Commerce de camisetas (fictício), com pagamen
   yarn install
   ~~~
   
-3. Renomeie o arquivo _.template.local_ da raiz, para **_.env.local_** e edite as chaves do stripe 
+3. Renomeie o arquivo _.template.env.local_ da raiz, para **_.env.local_** e edite as chaves do stripe 
   
 4. Execute a aplicação com o comando:
 
