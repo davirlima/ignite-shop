@@ -10,8 +10,6 @@ import { GetStaticProps } from "next";
 import Stripe from "stripe";
 import Link from "next/link";
 import Head from "next/head";
-
-import gradient from "../assets/gradient.svg";
 import { Handbag } from "phosphor-react";
 import { useCart } from "../hooks/useCart";
 
@@ -49,14 +47,6 @@ export default function Home({ products }: HomeProps) {
       </Head>
 
       <HomeContainer ref={sliderRef} className="keen-slider">
-        <Image
-          src={gradient}
-          alt=""
-          width={136}
-          height={900}
-          className="gradient"
-        />
-
         {products.map((product) => {
           return (
             <Link
