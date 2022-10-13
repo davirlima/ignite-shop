@@ -4,7 +4,7 @@
 
 Aplicação Web front-end de um E-Commerce de camisetas (fictício), com pagamento no Stripe. Feito utilizando _NextJS_.
 
-<!-- :link: <https://coffee-delivery-davirlima.vercel.app/> :link: -->
+:link: <https://ignite-shop-davirlima.vercel.app/> :link:
 
 </div>
 
